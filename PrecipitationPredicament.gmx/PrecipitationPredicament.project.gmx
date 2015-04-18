@@ -22,6 +22,7 @@
     <object>objects\oWall</object>
     <object>objects\oWaterEffect</object>
     <object>objects\oUmbrella</object>
+    <object>objects\oController</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
