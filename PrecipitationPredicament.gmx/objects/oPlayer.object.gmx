@@ -29,6 +29,11 @@
 umbrella.owner = id
 wetness = 0
 jump = false
+l_leg_angle = 0
+r_leg_angle = 0
+l_leg_as = 1
+r_leg_as = 1
+max_vel = 1000
 </string>
           </argument>
         </arguments>
@@ -51,21 +56,40 @@ jump = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if keyboard_check(ord("A"))
+            <string>if keyboard_check(ord("A")) and abs(phy_linear_velocity_x) &lt;= max_vel
     physics_apply_impulse(phy_position_x,phy_position_y,-200,0)
-else if keyboard_check(ord("D"))
+else if keyboard_check(ord("D")) and abs(phy_linear_velocity_x) &lt;= max_vel
     physics_apply_impulse(phy_position_x,phy_position_y,200,0)
 if jump = false and keyboard_check_pressed(ord("W"))
 {
-    physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-10000)
+    physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-8000)
     jump = true    
 }
+if abs(phy_linear_velocity_x) &lt; 1
+{
+l_leg_angle = 0
+r_leg_angle = 0
+}
+else
+{
+l_leg_angle -= l_leg_as * abs(phy_linear_velocity_x)/max_vel * 15
+r_leg_angle += r_leg_as * abs(phy_linear_velocity_x)/max_vel * 15
+if l_leg_angle &gt; 35
+    l_leg_as = 1
+else if l_leg_angle &lt; -5
+    l_leg_as = -1
+if r_leg_angle &lt; -35
+    r_leg_as = 1 
+else if r_leg_angle &gt; 5
+    r_leg_as = -1
+}
+
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="oWall">
+    <event eventtype="4" ename="oInvisawall">
       <action>
         <libid>1</libid>
         <id>605</id>
@@ -108,6 +132,28 @@ if jump = false and keyboard_check_pressed(ord("W"))
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="oWall">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>stuff</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="oRain2">
       <action>
         <libid>1</libid>
@@ -133,6 +179,62 @@ with(other)
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="oPlayer">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>yo</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self()
+if image_xscale &lt; 0
+{
+draw_sprite_ext(sLegs,0,x,y,image_xscale,image_yscale,image_angle + l_leg_angle,image_blend,image_alpha)
+draw_sprite_ext(sLegs,1,x,y,image_xscale,image_yscale,image_angle + r_leg_angle,image_blend,image_alpha)
+
+}
+else
+{
+draw_sprite_ext(sLegs,0,x,y,image_xscale,image_yscale,image_angle + r_leg_angle,image_blend,image_alpha)
+draw_sprite_ext(sLegs,1,x,y,image_xscale,image_yscale,image_angle + l_leg_angle,image_blend,image_alpha)
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
   </events>
   <PhysicsObject>-1</PhysicsObject>
   <PhysicsObjectSensor>0</PhysicsObjectSensor>
@@ -140,9 +242,9 @@ with(other)
   <PhysicsObjectDensity>2</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.300000011920929</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
-  <PhysicsObjectLinearDamping>1</PhysicsObjectLinearDamping>
+  <PhysicsObjectLinearDamping>0.300000011920929</PhysicsObjectLinearDamping>
   <PhysicsObjectAngularDamping>999999</PhysicsObjectAngularDamping>
-  <PhysicsObjectFriction>0.100000001490116</PhysicsObjectFriction>
+  <PhysicsObjectFriction>1</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>

@@ -11,6 +11,7 @@
     <sprite>sprites\oWater</sprite>
     <sprite>sprites\sU</sprite>
     <sprite>sprites\sP</sprite>
+    <sprite>sprites\sLegs</sprite>
     <sprite>sprites\sWall</sprite>
   </sprites>
   <backgrounds name="background"/>
@@ -23,6 +24,7 @@
     <object>objects\oWaterEffect</object>
     <object>objects\oUmbrella</object>
     <object>objects\oController</object>
+    <object>objects\oInvisawall</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
