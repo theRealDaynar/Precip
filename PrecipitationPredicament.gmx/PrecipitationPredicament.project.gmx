@@ -9,6 +9,7 @@
     <sprite>sprites\sPlayer</sprite>
     <sprite>sprites\sUmbrella</sprite>
     <sprite>sprites\oWater</sprite>
+    <sprite>sprites\sprite11</sprite>
     <sprite>sprites\sU</sprite>
     <sprite>sprites\sP</sprite>
     <sprite>sprites\sWall</sprite>
@@ -23,6 +24,7 @@
     <object>objects\oPlayer</object>
     <object>objects\oRain</object>
     <object>objects\oRain2</object>
+    <object>objects\oRainBG</object>
     <object>objects\oWall</object>
     <object>objects\oWaterEffect</object>
     <object>objects\oUmbrella</object>

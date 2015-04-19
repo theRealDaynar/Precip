@@ -89,10 +89,17 @@ else
 alarm[1] = rain_speed
 repeat(ceil(1/rain_speed))
 {
-var rain_drop = instance_create(random(room_width+300)-150,-10,oRain2);
+var rain_drop = instance_create(random(room_width+600)-300,-10,oRain2);
 var ws = wind_speed * 100
 with(rain_drop)
     physics_apply_force(x, y, ws, 0)
+repeat(2)
+{
+rain_drop = instance_create(random(room_width+600)-300,-10,oRainBG);
+ws = wind_speed * 100
+with(rain_drop)
+    physics_apply_force(x, y, ws, 0)
+}
 }
 </string>
           </argument>

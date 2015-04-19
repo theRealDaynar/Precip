@@ -26,10 +26,16 @@
           <argument>
             <kind>1</kind>
             <string>thrust = false
+
+//push
 thrustx = 0
 thrusty = 0
+//nopush
+thrust_dist = 0
+
 thrust_dir = 1
 thrust_dur = room_speed/6
+
 </string>
           </argument>
         </arguments>
@@ -56,6 +62,7 @@ thrust_dur = room_speed/6
         thrust_dir = 1
         thrustx = 0
         thrusty = 0
+        thrust_dist = 0
 </string>
           </argument>
         </arguments>
@@ -106,6 +113,7 @@ direction = image_angle + 90
     thrustx += thrust_dir * hspeed
     thrusty += thrust_dir * vspeed
     speed = 0
+    thrust_dist -= thrust_dir * 9
 </string>
           </argument>
         </arguments>
@@ -128,9 +136,8 @@ direction = image_angle + 90
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>    x = thrustx + owner.x - 60*image_xscale
-    y = thrusty + owner.y
-    if owner.controller and thrust = false
+            <string>    //turn umbrella
+    if owner.controller ///and thrust = false
     {
     hspeed = gamepad_axis_value(0, gp_axisrh);
     vspeed = gamepad_axis_value(0, gp_axisrv);
@@ -138,9 +145,20 @@ direction = image_angle + 90
     image_angle = direction - 90;
     speed = 0
     }
-    else if thrust = false
+    else //if thrust = false
     image_angle = point_direction(x,y,mouse_x,mouse_y) - 90
     phy_rotation = -image_angle
+    
+    //no push
+    direction = image_angle + 90
+    speed = thrust_dist
+    thrustx = hspeed
+    thrusty = vspeed
+    speed = 0
+    //*/
+    x = thrustx + owner.x - 60*image_xscale
+    y = thrusty + owner.y
+  
     phy_position_x = x
     phy_position_y = y
     
@@ -157,11 +175,14 @@ else if owner.controller = false and mouse_check_button(mb_left) and thrust = fa
 
 if thrust = true
 {
+    /* push
     direction = image_angle + 90
     speed = 9
     thrustx += thrust_dir * hspeed
     thrusty += thrust_dir * vspeed
-    speed = 0
+    speed = 0*/
+    ///no push
+    thrust_dist += 9 * thrust_dir
 }
 </string>
           </argument>
