@@ -29,6 +29,12 @@
 umbrella.owner = id
 wetness = 0
 jump = false
+
+l_leg_angle = 0
+r_leg_angle = 0
+l_leg_as = 1
+r_leg_as = 1
+max_vel = 1000
 </string>
           </argument>
         </arguments>
@@ -51,14 +57,32 @@ jump = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if keyboard_check(ord("A"))
+            <string>if keyboard_check(ord("A")) and abs(phy_linear_velocity_x) &lt;= max_vel
     physics_apply_impulse(phy_position_x,phy_position_y,-200,0)
-else if keyboard_check(ord("D"))
+else if keyboard_check(ord("D")) and abs(phy_linear_velocity_x) &lt;= max_vel
     physics_apply_impulse(phy_position_x,phy_position_y,200,0)
 if jump = false and keyboard_check_pressed(ord("W"))
 {
-    physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-4000)
+    physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-20000)
     jump = true    
+}
+if abs(phy_linear_velocity_x) &lt; 10
+{
+l_leg_angle = 0
+r_leg_angle = 0
+}
+else
+{
+l_leg_angle -= l_leg_as * abs(phy_linear_velocity_x)/max_vel * 15
+r_leg_angle += r_leg_as * abs(phy_linear_velocity_x)/max_vel * 15
+if l_leg_angle &gt; 35
+    l_leg_as = 1
+else if l_leg_angle &lt; -5
+    l_leg_as = -1
+if r_leg_angle &lt; -35
+    r_leg_as = 1 
+else if r_leg_angle &gt; 5
+    r_leg_as = -1
 }
 </string>
           </argument>
@@ -128,6 +152,40 @@ if jump = false and keyboard_check_pressed(ord("W"))
             <string>wetness+=10
 with(other)
     instance_destroy()
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self()
+if image_xscale &lt; 0
+{
+draw_sprite_ext(sLegs,0,x,y,image_xscale,image_yscale,image_angle + l_leg_angle,image_blend,image_alpha)
+draw_sprite_ext(sLegs,1,x,y,image_xscale,image_yscale,image_angle + r_leg_angle,image_blend,image_alpha)
+
+}
+else
+{
+draw_sprite_ext(sLegs,0,x,y,image_xscale,image_yscale,image_angle + r_leg_angle,image_blend,image_alpha)
+draw_sprite_ext(sLegs,1,x,y,image_xscale,image_yscale,image_angle + l_leg_angle,image_blend,image_alpha)
+}
 </string>
           </argument>
         </arguments>

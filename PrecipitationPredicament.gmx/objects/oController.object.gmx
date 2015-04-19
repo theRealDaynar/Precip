@@ -100,13 +100,13 @@ alarm[0] = 1200
             <kind>1</kind>
             <string>///UI
 //Player 1
-draw_text(10,10,"Player 1")
+draw_text_color(10,10,"Player 1",c_white,c_white,c_white,c_white,1)
 draw_healthbar(10,25,110,30,p1.wetness,c_gray,c_blue,c_blue,fa_left,true,false)
 
 draw_set_halign(fa_right)
-draw_text(room_width - 10,10,"Player 2")
+draw_text_color(room_width - 10,10,"Player 2",c_white,c_white,c_white,c_white,1)
 draw_set_halign(fa_left)
-draw_healthbar(room_width - 110,25,room_width - 10,30,p2.wetness,c_gray,c_blue,c_blue,fa_right,true,false)
+draw_healthbar(room_width - 110,25,room_width - 10,30,p2.wetness,c_gray,c_blue,c_blue,1,true,false)
 </string>
           </argument>
         </arguments>

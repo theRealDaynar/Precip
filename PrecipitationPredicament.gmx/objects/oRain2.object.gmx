@@ -155,7 +155,7 @@ alarm[0] = room_speed/5
   <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.200000002980232</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
-  <PhysicsObjectLinearDamping>0</PhysicsObjectLinearDamping>
+  <PhysicsObjectLinearDamping>0.5</PhysicsObjectLinearDamping>
   <PhysicsObjectAngularDamping>0</PhysicsObjectAngularDamping>
   <PhysicsObjectFriction>0.00999999977648258</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
