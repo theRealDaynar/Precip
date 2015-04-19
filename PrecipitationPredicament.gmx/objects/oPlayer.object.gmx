@@ -64,7 +64,7 @@ controller = false
         physics_apply_impulse(phy_position_x,phy_position_y,-200,0)
     else if gamepad_axis_value(0, gp_axislh) &gt; .5  and abs(phy_linear_velocity_x) &lt;= max_vel
         physics_apply_impulse(phy_position_x,phy_position_y,200,0)
-    if jump = false and gamepad_button_value(0, gp_face2)
+    if jump = false and gamepad_button_value(0, gp_shoulderl)
     {
         physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-20000)
         jump = true    
@@ -166,7 +166,7 @@ else if r_leg_angle &gt; 5
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>wetness+=10
+            <string>wetness++
 with(other)
     instance_destroy()
 </string>
