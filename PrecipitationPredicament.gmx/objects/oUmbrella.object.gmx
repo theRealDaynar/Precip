@@ -144,12 +144,12 @@ direction = image_angle + 90
     phy_position_x = x
     phy_position_y = y
     
-if owner.controller and gamepad_button_check(0,gp_shoulderr)
+if owner.controller and gamepad_button_check(0,gp_shoulderr) and thrust = false
 {
     thrust = true
     alarm[0] = thrust_dur
 }
-else if owner.controller = false and mouse_check_button(mb_left)
+else if owner.controller = false and mouse_check_button(mb_left) and thrust = false
 {
     thrust = true
     alarm[0] = thrust_dur

@@ -33,7 +33,34 @@ p2 = instance_create(room_width - 100,room_height - 300,oPlayer)
 p2.controller = 1
 rain_speed = room_speed / 30
 alarm[1] = rain_speed
+wind_change_timer = room_speed * 3
+alarm[2] = wind_change_timer
 wind_speed = 0
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>alarm[2] = wind_change_timer
+wind_speed = irandom(16 * 2) - 15
+rain_speed = room_speed/((random(5)+.1) * 30)
 </string>
           </argument>
         </arguments>
@@ -56,8 +83,17 @@ wind_speed = 0
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[1] = rain_speed
-instance_create(random(room_width),-10,oRain2)
+            <string>if rain_speed &lt; 1
+alarm[1] = 1
+else
+alarm[1] = rain_speed
+repeat(ceil(1/rain_speed))
+{
+var rain_drop = instance_create(random(room_width+300)-150,-10,oRain2);
+var ws = wind_speed * 100
+with(rain_drop)
+    physics_apply_force(x, y, ws, 0)
+}
 </string>
           </argument>
         </arguments>
@@ -111,8 +147,14 @@ draw_healthbar(10,25,110,30,p1.wetness,c_gray,c_blue,c_blue,fa_left,true,false)
 
 draw_set_halign(fa_right)
 draw_text_color(room_width - 10,10,"Player 2",c_white,c_white,c_white,c_white,1)
-draw_set_halign(fa_left)
 draw_healthbar(room_width - 110,25,room_width - 10,30,p2.wetness,c_gray,c_blue,c_blue,1,true,false)
+
+//wind
+draw_set_halign(fa_center)
+draw_text_color(room_width/2,10,"Wind Speed " + string(wind_speed),c_white,c_white,c_white,c_white,1)
+draw_text_color(room_width/2,25,"Intensity " + string(1/rain_speed),c_white,c_white,c_white,c_white,1)
+
+draw_set_halign(fa_left)
 </string>
           </argument>
         </arguments>
