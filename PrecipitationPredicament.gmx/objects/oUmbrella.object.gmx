@@ -8,6 +8,109 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>thrust = false
+thrustx = 0
+thrusty = 0
+thrust_dir = 1
+thrust_dur = room_speed/6
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>thrust = false
+        thrust_dir = 1
+        thrustx = 0
+        thrusty = 0
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>thrust</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///pullback
+thrust_dir = -1
+alarm[1] = thrust_dur
+direction = image_angle + 90
+    speed = 9
+    thrustx += thrust_dir * hspeed
+    thrusty += thrust_dir * vspeed
+    speed = 0
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="3" enumb="2">
       <action>
         <libid>1</libid>
@@ -25,12 +128,41 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>x = owner.x
-y = owner.y
-image_angle = point_direction(x,y,mouse_x,mouse_y) - 90
-phy_rotation = -image_angle
-phy_position_x = x
-phy_position_y = y
+            <string>    x = thrustx + owner.x - 60*image_xscale
+    y = thrusty + owner.y
+    if owner.controller and thrust = false
+    {
+    hspeed = gamepad_axis_value(0, gp_axisrh);
+    vspeed = gamepad_axis_value(0, gp_axisrv);
+    if speed &gt; .75
+    image_angle = direction - 90;
+    speed = 0
+    }
+    else if thrust = false
+    image_angle = point_direction(x,y,mouse_x,mouse_y) - 90
+    phy_rotation = -image_angle
+    phy_position_x = x
+    phy_position_y = y
+    
+if owner.controller and gamepad_button_check(0,gp_face1)
+{
+    thrust = true
+    alarm[0] = thrust_dur
+}
+else if owner.controller = false and mouse_check_button(mb_left)
+{
+    thrust = true
+    alarm[0] = thrust_dur
+}
+
+if thrust = true
+{
+    direction = image_angle + 90
+    speed = 9
+    thrustx += thrust_dir * hspeed
+    thrusty += thrust_dir * vspeed
+    speed = 0
+}
 </string>
           </argument>
         </arguments>

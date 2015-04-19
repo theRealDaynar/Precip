@@ -28,7 +28,9 @@
             <string>///create players
 p1 = instance_create(100,room_height - 300,oPlayer)
 p1.image_xscale = -1
+p1.umbrella.image_xscale = -1
 p2 = instance_create(room_width - 100,room_height - 300,oPlayer)
+p2.controller = 1
 </string>
           </argument>
         </arguments>

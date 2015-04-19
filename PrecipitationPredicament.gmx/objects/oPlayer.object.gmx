@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>umbrella = instance_create(x,y,oUmbrella)
+            <string>umbrella = instance_create(x + 50,y,oUmbrella)
 umbrella.owner = id
 wetness = 0
 jump = false
@@ -35,6 +35,7 @@ r_leg_angle = 0
 l_leg_as = 1
 r_leg_as = 1
 max_vel = 1000
+controller = false
 </string>
           </argument>
         </arguments>
@@ -57,7 +58,21 @@ max_vel = 1000
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if keyboard_check(ord("A")) and abs(phy_linear_velocity_x) &lt;= max_vel
+            <string>if controller
+{
+    if gamepad_axis_value(0, gp_axislh) &lt; -.5 and abs(phy_linear_velocity_x) &lt;= max_vel
+        physics_apply_impulse(phy_position_x,phy_position_y,-200,0)
+    else if gamepad_axis_value(0, gp_axislh) &gt; .5  and abs(phy_linear_velocity_x) &lt;= max_vel
+        physics_apply_impulse(phy_position_x,phy_position_y,200,0)
+    if jump = false and gamepad_button_value(0, gp_face2)
+    {
+        physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-20000)
+        jump = true    
+    }
+}
+else
+{
+if keyboard_check(ord("A")) and abs(phy_linear_velocity_x) &lt;= max_vel
     physics_apply_impulse(phy_position_x,phy_position_y,-200,0)
 else if keyboard_check(ord("D")) and abs(phy_linear_velocity_x) &lt;= max_vel
     physics_apply_impulse(phy_position_x,phy_position_y,200,0)
@@ -66,6 +81,8 @@ if jump = false and keyboard_check_pressed(ord("W"))
     physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-20000)
     jump = true    
 }
+}
+
 if abs(phy_linear_velocity_x) &lt; 10
 {
 l_leg_angle = 0
@@ -157,6 +174,28 @@ with(other)
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="oPlayer">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>stuff</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -200,7 +239,7 @@ draw_sprite_ext(sLegs,1,x,y,image_xscale,image_yscale,image_angle + l_leg_angle,
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
   <PhysicsObjectLinearDamping>1</PhysicsObjectLinearDamping>
   <PhysicsObjectAngularDamping>999999</PhysicsObjectAngularDamping>
-  <PhysicsObjectFriction>0.100000001490116</PhysicsObjectFriction>
+  <PhysicsObjectFriction>0</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
