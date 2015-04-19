@@ -154,6 +154,8 @@ alarm[0] = room_speed/5
           <argument>
             <kind>1</kind>
             <string>instance_destroy()
+repeat(4)
+    instance_create(x,y,oWaterEffect2)
 </string>
           </argument>
         </arguments>
