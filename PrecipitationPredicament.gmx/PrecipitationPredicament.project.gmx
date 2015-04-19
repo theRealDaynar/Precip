@@ -12,6 +12,9 @@
     <sprite>sprites\sU</sprite>
     <sprite>sprites\sP</sprite>
     <sprite>sprites\sWall</sprite>
+    <sprite>sprites\_bg1</sprite>
+    <sprite>sprites\_bg2</sprite>
+    <sprite>sprites\clouds</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -23,8 +26,13 @@
     <object>objects\oWaterEffect</object>
     <object>objects\oUmbrella</object>
     <object>objects\oController</object>
+    <object>objects\bg1</object>
+    <object>objects\bg2</object>
+    <object>objects\objclouds</object>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
+    <room>rooms\room1</room>
     <room>rooms\room0</room>
   </rooms>
   <help>

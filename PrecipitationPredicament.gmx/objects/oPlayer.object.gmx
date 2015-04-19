@@ -57,7 +57,7 @@ else if keyboard_check(ord("D"))
     physics_apply_impulse(phy_position_x,phy_position_y,200,0)
 if jump = false and keyboard_check_pressed(ord("W"))
 {
-    physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-10000)
+    physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-4000)
     jump = true    
 }
 </string>
@@ -146,9 +146,9 @@ with(other)
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>16,48</point>
-    <point>96,48</point>
-    <point>96,160</point>
-    <point>16,160</point>
+    <point>32,48</point>
+    <point>80,48</point>
+    <point>80,208</point>
+    <point>32,208</point>
   </PhysicsShapePoints>
 </object>

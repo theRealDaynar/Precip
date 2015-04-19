@@ -49,13 +49,13 @@ phy_position_y = y
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>0,32</point>
-    <point>6,18</point>
-    <point>64,0</point>
-    <point>128,8</point>
-    <point>152,24</point>
-    <point>152,32</point>
-    <point>112,56</point>
-    <point>24,56</point>
+    <point>0,80</point>
+    <point>24,60</point>
+    <point>64,36</point>
+    <point>136,24</point>
+    <point>156,24</point>
+    <point>224,36</point>
+    <point>264,56</point>
+    <point>292,80</point>
   </PhysicsShapePoints>
 </object>
