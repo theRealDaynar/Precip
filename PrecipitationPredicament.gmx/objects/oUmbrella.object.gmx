@@ -137,10 +137,10 @@ direction = image_angle + 90
           <argument>
             <kind>1</kind>
             <string>    //turn umbrella
-    if owner.controller ///and thrust = false
+    if owner.c &gt; 0 ///and thrust = false
     {
-    hspeed = gamepad_axis_value(0, gp_axisrh);
-    vspeed = gamepad_axis_value(0, gp_axisrv);
+    hspeed = gamepad_axis_value(owner.c - 1, gp_axisrh);
+    vspeed = gamepad_axis_value(owner.c - 1, gp_axisrv);
     if speed &gt; .75
     image_angle = direction - 90;
     speed = 0
@@ -156,18 +156,18 @@ direction = image_angle + 90
     thrusty = vspeed
     speed = 0
     //*/
-    x = thrustx + owner.x - 60*image_xscale
+    x = thrustx + owner.x - 25*image_xscale
     y = thrusty + owner.y
   
     phy_position_x = x
     phy_position_y = y
     
-if owner.controller and gamepad_button_check(0,gp_shoulderr) and thrust = false
+if owner.c &gt; 0 and gamepad_button_check(owner.c - 1,gp_shoulderr) and thrust = false
 {
     thrust = true
     alarm[0] = thrust_dur
 }
-else if owner.controller = false and mouse_check_button(mb_left) and thrust = false
+else if owner.c = 0 and mouse_check_button(mb_left) and thrust = false
 {
     thrust = true
     alarm[0] = thrust_dur

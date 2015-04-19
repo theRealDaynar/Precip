@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>umbrella = instance_create(x + 50,y,oUmbrella)
+            <string>umbrella = instance_create(x + 25,y,oUmbrella)
 umbrella.owner = id
 wetness = 0
 jump = false
@@ -35,7 +35,7 @@ r_leg_angle = 0
 l_leg_as = 1
 r_leg_as = 1
 max_vel = 1000
-controller = false
+c = 0
 </string>
           </argument>
         </arguments>
@@ -58,13 +58,13 @@ controller = false
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if controller
+            <string>if c = 1 or c = 2
 {
-    if gamepad_axis_value(0, gp_axislh) &lt; -.5 and abs(phy_linear_velocity_x) &lt;= max_vel
+    if gamepad_axis_value(c - 1, gp_axislh) &lt; -.5 and abs(phy_linear_velocity_x) &lt;= max_vel
         physics_apply_impulse(phy_position_x,phy_position_y,-200,0)
-    else if gamepad_axis_value(0, gp_axislh) &gt; .5  and abs(phy_linear_velocity_x) &lt;= max_vel
+    else if gamepad_axis_value(c - 1, gp_axislh) &gt; .5  and abs(phy_linear_velocity_x) &lt;= max_vel
         physics_apply_impulse(phy_position_x,phy_position_y,200,0)
-    if jump = false and gamepad_button_value(0, gp_shoulderl)
+    if jump = false and gamepad_button_value(c - 1, gp_shoulderl)
     {
         physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-20000)
         jump = true    
@@ -72,15 +72,15 @@ controller = false
 }
 else
 {
-if keyboard_check(ord("A")) and abs(phy_linear_velocity_x) &lt;= max_vel
-    physics_apply_impulse(phy_position_x,phy_position_y,-200,0)
-else if keyboard_check(ord("D")) and abs(phy_linear_velocity_x) &lt;= max_vel
-    physics_apply_impulse(phy_position_x,phy_position_y,200,0)
-if jump = false and keyboard_check_pressed(ord("W"))
-{
-    physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-20000)
-    jump = true    
-}
+    if keyboard_check(ord("A")) and abs(phy_linear_velocity_x) &lt;= max_vel
+        physics_apply_impulse(phy_position_x,phy_position_y,-200,0)
+    else if keyboard_check(ord("D")) and abs(phy_linear_velocity_x) &lt;= max_vel
+        physics_apply_impulse(phy_position_x,phy_position_y,200,0)
+    if jump = false and keyboard_check_pressed(ord("W"))
+    {
+        physics_apply_impulse(phy_position_x,phy_position_y + 10,0,-20000)
+        jump = true    
+    }
 }
 
 if abs(phy_linear_velocity_x) &lt; 10
@@ -102,6 +102,28 @@ else if r_leg_angle &gt; 5
     r_leg_as = -1
 }
 </string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="oSideBarrier">
+      <action>
+        <libid>1</libid>
+        <id>605</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>0</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>stay in view</string>
           </argument>
         </arguments>
       </action>
@@ -166,9 +188,17 @@ else if r_leg_angle &gt; 5
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>wetness++
+            <string>wetness += 10
 with(other)
     instance_destroy()
+if wetness &gt;= 100 and oController.game_over = false
+{
+    oController.game_over = true
+    if image_xscale = 1
+        oController.winner = 1
+    else
+        oController.winner = 2
+}
 </string>
           </argument>
         </arguments>

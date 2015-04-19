@@ -20,12 +20,17 @@
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
+  <fonts name="fonts">
+    <font>fonts\font0</font>
+    <font>fonts\font1</font>
+  </fonts>
   <objects name="objects">
     <object>objects\oPlayer</object>
     <object>objects\oRain</object>
     <object>objects\oRain2</object>
     <object>objects\oRainBG</object>
     <object>objects\oWall</object>
+    <object>objects\oSideBarrier</object>
     <object>objects\oWaterEffect</object>
     <object>objects\oUmbrella</object>
     <object>objects\oController</object>
