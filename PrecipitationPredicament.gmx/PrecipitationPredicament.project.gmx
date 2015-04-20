@@ -38,6 +38,12 @@
     <object>objects\bg2</object>
     <object>objects\objclouds</object>
     <object>objects\oWaterEffect2</object>
+    <object>objects\oLightning</object>
+    <objects name="lightning">
+      <object>objects\oLine</object>
+    </objects>
+    <object>objects\oNewLightning</object>
+    <object>objects\oLightningEffect</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room1</room>

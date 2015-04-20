@@ -136,7 +136,9 @@ direction = image_angle + 90
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>    //turn umbrella
+            <string>if owner.shocked = false
+{
+     //turn umbrella
     if owner.c &gt; 0 ///and thrust = false
     {
     hspeed = gamepad_axis_value(owner.c - 1, gp_axisrh);
@@ -146,9 +148,11 @@ direction = image_angle + 90
     speed = 0
     }
     else //if thrust = false
+    {
     image_angle = point_direction(x,y,mouse_x,mouse_y) - 90
+    }
     phy_rotation = -image_angle
-    
+}    
     //no push
     direction = image_angle + 90
     speed = thrust_dist
@@ -161,18 +165,20 @@ direction = image_angle + 90
   
     phy_position_x = x
     phy_position_y = y
-    
+if owner.shocked = false{    
 if owner.c &gt; 0 and gamepad_button_check(owner.c - 1,gp_shoulderr) and thrust = false
 {
     thrust = true
     alarm[0] = thrust_dur
+    owner.alarm[0] = owner.lightning_timer
 }
 else if owner.c = 0 and mouse_check_button(mb_left) and thrust = false
 {
     thrust = true
     alarm[0] = thrust_dur
+    owner.alarm[0] = owner.lightning_timer
 }
-
+}
 if thrust = true
 {
     /* push
