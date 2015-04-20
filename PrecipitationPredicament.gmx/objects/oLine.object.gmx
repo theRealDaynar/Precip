@@ -51,7 +51,7 @@ decay = .25
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_line_width_colour(x,y,end_x,end_y,width,c_white,c_white)
+            <string>draw_line_width_colour(x,y,end_x,end_y,width,image_blend,image_blend)
 width -=decay
 if width &lt;= 0
     instance_destroy()

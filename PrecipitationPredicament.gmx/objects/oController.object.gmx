@@ -46,6 +46,44 @@ win_angle = 0
 win_angle_spd = 1
 win_angle_max = 15
 win_angle_dir = 1
+
+lightning_effect_min_timer = room_speed/2
+lightning_effect_max_timer = room_speed * 2
+lightning_effect_height = 300
+lightning_effect_color = make_colour_rgb(110,110,110)
+lightning_effect_width = 3
+alarm[4] = random(lightning_effect_max_timer - lightning_effect_min_timer) + lightning_effect_min_timer 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var lightning = instance_create(random(room_width),0,oLightningEffect);
+lightning.end_x = lightning.x
+lightning.end_y = lightning_effect_height
+lightning.width = lightning_effect_width
+lightning.image_blend = lightning_effect_color
+lightning.depth = 5
+with(lightning)
+    event_perform(ev_other,ev_user0)
+alarm[4] = random(lightning_effect_max_timer - lightning_effect_min_timer) + lightning_effect_min_timer 
 </string>
           </argument>
         </arguments>
@@ -206,12 +244,12 @@ alarm[0] = 1200
             if selected_menu_option = 0
             {
                 p1c ++
-                if p1c &gt; 2
+                if p1c &gt; 3
                     p1c = 0
-                if p1c = p2c
+                if p1c = p2c and p1c != 3
                 {
                     p1c++
-                    if p1c &gt; 2
+                    if p1c &gt; 3
                         p1c = 0
                 }
                 alarm[3] = menu_delay
@@ -219,12 +257,12 @@ alarm[0] = 1200
             else if selected_menu_option = 1
             {
                 p2c ++
-                if p2c &gt; 2
+                if p2c &gt; 3
                     p2c = 0
-                if p1c = p2c
+                if p1c = p2c and p2c != 3
                 {
                     p2c++
-                    if p2c &gt; 2
+                    if p2c &gt; 3
                         p2c = 0
                 }
                 alarm[3] = menu_delay
@@ -237,12 +275,12 @@ alarm[0] = 1200
             {
                 p1c --
                 if p1c &lt; 0
-                    p1c = 2
-                if p1c = p2c
+                    p1c = 3
+                if p1c = p2c and p1c != 3
                 {
                     p1c--
                     if p1c &lt; 0
-                        p1c = 2
+                        p1c = 3
                 }
                 alarm[3] = menu_delay
             }
@@ -250,12 +288,12 @@ alarm[0] = 1200
             {
                 p2c --
                 if p2c &lt; 0
-                    p2c = 2
-                if p1c = p2c
+                    p2c = 3
+                if p1c = p2c and p2c != 3
                 {
                     p2c--
                     if p2c &lt; 0
-                        p2c = 2
+                        p2c = 3
                 }
                 alarm[3] = menu_delay
             }
@@ -345,14 +383,18 @@ else
         strc1 = "Keyboard &amp; Mouse"
     else if p1c = 1
         strc1 = "Controller 1"
-    else
+    else if p1c = 2
         strc1 = "Controller 2"
+    else
+        strc1 = "Bot"
     if p2c = 0
         strc2 = "Keyboard &amp; Mouse"
     else if p2c = 1
         strc2 = "Controller 1"
-    else
+    else if p2c = 2
         strc2 = "Controller 2"
+    else
+        strc2 = "Bot"
     draw_set_halign(fa_center)
     var c1 = c_white;
     var c2 = c_white;

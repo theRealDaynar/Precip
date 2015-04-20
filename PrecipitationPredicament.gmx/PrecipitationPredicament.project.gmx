@@ -12,11 +12,14 @@
     <sprite>sprites\sprite11</sprite>
     <sprite>sprites\sU</sprite>
     <sprite>sprites\sP</sprite>
+    <sprite>sprites\sSmallerDudes</sprite>
+    <sprite>sprites\sP2</sprite>
     <sprite>sprites\sWall</sprite>
     <sprite>sprites\_bg1</sprite>
     <sprite>sprites\_bg2</sprite>
     <sprite>sprites\clouds</sprite>
     <sprite>sprites\sLegs</sprite>
+    <sprite>sprites\sSmallerLegs</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -26,24 +29,20 @@
   </fonts>
   <objects name="objects">
     <object>objects\oPlayer</object>
-    <object>objects\oRain</object>
     <object>objects\oRain2</object>
     <object>objects\oRainBG</object>
     <object>objects\oWall</object>
     <object>objects\oSideBarrier</object>
-    <object>objects\oWaterEffect</object>
     <object>objects\oUmbrella</object>
     <object>objects\oController</object>
     <object>objects\bg1</object>
     <object>objects\bg2</object>
     <object>objects\objclouds</object>
     <object>objects\oWaterEffect2</object>
-    <object>objects\oLightning</object>
     <objects name="lightning">
       <object>objects\oLine</object>
+      <object>objects\oLightningEffect</object>
     </objects>
-    <object>objects\oNewLightning</object>
-    <object>objects\oLightningEffect</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room1</room>

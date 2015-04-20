@@ -136,10 +136,34 @@ direction = image_angle + 90
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if owner.shocked = false
-{
-     //turn umbrella
-    if owner.c &gt; 0 ///and thrust = false
+            <string>     //turn umbrella
+    if owner.c = 3 //ai
+    {
+        var e; //enemy
+        with(oPlayer)
+        {
+            if id != other.id
+            {
+                e = id
+            }
+        }
+        if random(1) &lt; .01 and distance_to_object(e) &lt; 250 and (sign(oController.wind_speed) = sign(e.phy_position_x - owner.phy_position_x) or abs(oController.wind_speed) &lt; 3)
+        {
+            if e.phy_position_x &gt; owner.phy_position_x
+                image_angle = - 15
+            else
+                image_angle = 15
+            if thrust = false
+            {
+                thrust = true
+                alarm[0] = thrust_dur
+                owner.alarm[0] = owner.lightning_timer
+            }
+        }else if thrust = false
+            image_angle = oController.wind_speed * .75
+        
+    }
+    else if owner.c &gt; 0///and thrust = false
     {
     hspeed = gamepad_axis_value(owner.c - 1, gp_axisrh);
     vspeed = gamepad_axis_value(owner.c - 1, gp_axisrv);
@@ -151,8 +175,7 @@ direction = image_angle + 90
     {
     image_angle = point_direction(x,y,mouse_x,mouse_y) - 90
     }
-    phy_rotation = -image_angle
-}    
+    phy_rotation = -image_angle    
     //no push
     direction = image_angle + 90
     speed = thrust_dist
