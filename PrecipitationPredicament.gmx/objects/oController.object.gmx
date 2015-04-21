@@ -26,6 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>///create players
+audio_stop_all()
+
 audio_play_sound(sBG_RAIN,1,1)
 audio_play_sound(sNEWMUSIC,1,1)
 
