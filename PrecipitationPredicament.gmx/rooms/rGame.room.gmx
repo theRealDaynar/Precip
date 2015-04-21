@@ -3,7 +3,7 @@
   <caption></caption>
   <width>1200</width>
   <height>768</height>
-  <vsnap>32</vsnap>
+  <vsnap>1</vsnap>
   <hsnap>1</hsnap>
   <isometric>0</isometric>
   <speed>60</speed>
@@ -31,7 +31,7 @@
     <yoffset>0</yoffset>
   </makerSettings>
   <backgrounds>
-    <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
+    <background visible="0" foreground="-1" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
     <background visible="0" foreground="0" name="" x="0" y="0" htiled="-1" vtiled="-1" hspeed="0" vspeed="0" stretch="0"/>
@@ -55,7 +55,7 @@
     <instance objName="bg1" x="600" y="384" name="inst_A2642C25" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="bg2" x="605" y="448" name="inst_1BD34BA6" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objclouds" x="-1" y="0" name="inst_1B035402" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oWall" x="-895" y="640" name="inst_CC1DAD56" locked="0" code="" scaleX="92.125" scaleY="4" colour="4294967295" rotation="0"/>
+    <instance objName="oWall" x="-905" y="640" name="inst_CC1DAD56" locked="0" code="" scaleX="92.125" scaleY="4" colour="4294967295" rotation="0"/>
     <instance objName="oSideBarrier" x="-93" y="32" name="inst_A1BDD6CE" locked="0" code="" scaleX="1.25" scaleY="21" colour="4294967295" rotation="0"/>
     <instance objName="oSideBarrier" x="1250" y="32" name="inst_685069A1" locked="0" code="" scaleX="1.25" scaleY="21" colour="4294967295" rotation="0"/>
   </instances>

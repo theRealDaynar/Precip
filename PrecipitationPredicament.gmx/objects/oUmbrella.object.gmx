@@ -173,7 +173,7 @@ direction = image_angle + 90
     }
     else //if thrust = false
     {
-    image_angle = point_direction(x,y,mouse_x,mouse_y) - 90
+        image_angle = point_direction(x,y,mouse_x,mouse_y) - 90
     }
     phy_rotation = -image_angle    
     //no push
@@ -189,18 +189,22 @@ direction = image_angle + 90
     phy_position_x = x
     phy_position_y = y
 if owner.shocked = false{    
+//thrust
 if owner.c &gt; 0 and gamepad_button_check(owner.c - 1,gp_shoulderr) and thrust = false
 {
     thrust = true
     alarm[0] = thrust_dur
     owner.alarm[0] = owner.lightning_timer
+    audio_play_sound(sThrust,1,0)
 }
 else if owner.c = 0 and mouse_check_button(mb_left) and thrust = false
 {
     thrust = true
     alarm[0] = thrust_dur
     owner.alarm[0] = owner.lightning_timer
+    audio_play_sound(sThrust,1,0)
 }
+
 }
 if thrust = true
 {

@@ -4,7 +4,15 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\sBG_RAIN</sound>
+    <sound>sound\sNEWMUSIC</sound>
+    <sound>sound\sMENU</sound>
+    <sound>sound\sThrust</sound>
+    <sound>sound\sLightning</sound>
+    <sound>sound\sJump</sound>
+    <sound>sound\sTap</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sPlayer</sprite>
     <sprite>sprites\sUmbrella</sprite>
@@ -16,10 +24,12 @@
     <sprite>sprites\sP2</sprite>
     <sprite>sprites\sWall</sprite>
     <sprite>sprites\_bg1</sprite>
+    <sprite>sprites\sG</sprite>
     <sprite>sprites\_bg2</sprite>
     <sprite>sprites\clouds</sprite>
     <sprite>sprites\sLegs</sprite>
     <sprite>sprites\sSmallerLegs</sprite>
+    <sprite>sprites\sU2</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -43,10 +53,10 @@
       <object>objects\oLine</object>
       <object>objects\oLightningEffect</object>
     </objects>
+    <object>objects\oGround</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\room1</room>
-    <room>rooms\room0</room>
+    <room>rooms\rGame</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
